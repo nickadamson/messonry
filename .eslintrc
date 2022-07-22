@@ -4,11 +4,7 @@
   "parserOptions": {
     "ecmaVersion": 10
   },
-  "plugins": [
-    "jsx-a11y",
-    "@typescript-eslint/eslint-plugin",
-    "testing-library"
-  ],
+  "plugins": ["jsx-a11y", "@typescript-eslint/eslint-plugin", "testing-library", "prettier"],
   "extends": [
     "plugin:jsx-a11y/recommended",
     "plugin:import/recommended",
@@ -36,15 +32,7 @@
     "import/order": [
       "error",
       {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          "parent",
-          "sibling",
-          "index",
-          "object"
-        ],
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object"],
         "newlines-between": "always",
         "alphabetize": { "order": "asc", "caseInsensitive": true }
       }
@@ -55,12 +43,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "src/**/*.ts",
-        "src/**/*.tsx",
-        "tests/**/*.ts",
-        "tests/**/*.tsx"
-      ],
+      "files": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.ts", "tests/**/*.tsx"],
       "parserOptions": {
         "project": ["tsconfig.json"]
       }
