@@ -1,0 +1,105 @@
+{
+  "name": "messonry",
+  "version": "0.1.0",
+  "description": "A messy grid layout library for React. Like a masonry layout; except that it crops images as little as possible, and displays them as close to their original aspect ratio as possible.",
+  "author": "Nick Adamson",
+  "license": "MIT",
+  "private": false,
+  "bugs": {
+    "url": "https://github.com/nickadamson/messonry/issues"
+  },
+  "homepage": "https://github.com/nickadamson/messonry#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickadamson/messonry.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "commit": "git-cz",
+    "lint": "eslint src/ tests/ --ext .ts,.tsx --config .eslintrc",
+    "test": "jest",
+    "dev": "start-storybook -p 6006",
+    "build": "yarn prepack && build:sb",
+    "prepack": "yarn clean && tsc",
+    "clean": "rimraf ./dist",
+    "build:sb": "build-storybook",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.9.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.9",
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "@emotion/jest": "^11.9.4",
+    "@storybook/addon-actions": "^6.5.9",
+    "@storybook/addon-essentials": "^6.5.9",
+    "@storybook/addon-interactions": "^6.5.9",
+    "@storybook/addon-links": "^6.5.9",
+    "@storybook/builder-webpack4": "^6.5.9",
+    "@storybook/manager-webpack4": "^6.5.9",
+    "@storybook/react": "^6.5.9",
+    "@storybook/testing-library": "^0.0.13",
+    "@testing-library/react": "^13.3.0",
+    "@types/jest": "^28.1.6",
+    "@types/node": "^18.0.6",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
+    "babel-loader": "^8.2.5",
+    "commitizen": "^4.2.5",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.20.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-testing-library": "^5.5.1",
+    "git-cz": "^4.9.0",
+    "husky": "^8.0.1",
+    "jest": "^28.1.3",
+    "jest-environment-jsdom": "^28.1.3",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^28.0.7",
+    "typescript": "^4.7.4"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,jsx,css,md}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  },
+  "keywords": [
+    "react",
+    "grid",
+    "messy",
+    "masonry",
+    "aspect-ratio",
+    "portfolio",
+    "gallery"
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/git-cz"
+    }
+  }
+}
