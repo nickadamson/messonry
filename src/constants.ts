@@ -1,4 +1,5 @@
 export type SupportedAspectRatio =
+  | "hidden" // Grid Items are hidden until loaded
   | "1x1"
   | "5x4"
   | "4x3"
