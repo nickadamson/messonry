@@ -1,53 +1,74 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import React from "react";
-import calcAspectRatio from "src/calcAspectRatio";
-import { SupportedAspectRatio } from "src/constants";
+
+import calcAspectRatio from "../calcAspectRatio";
+import { SupportedAspectRatio } from "../constants";
 
 type WrapperProps = {
   src: string;
-  setAspectRatio: React.Dispatch<React.SetStateAction<SupportedAspectRatio>>;
+  handleCalculatedRatio: (calculatedRatio: SupportedAspectRatio) => void;
 };
 
-export const ImageWrapper = React.forwardRef<HTMLImageElement, WrapperProps>(({ src, setAspectRatio }, ref) => {
-  console.log({ src, setAspectRatio, ref });
-
+export const ImageWrapper = React.forwardRef<HTMLImageElement, WrapperProps>(({ src, handleCalculatedRatio }, ref) => {
   const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    console.log({ e });
     const width = e.currentTarget.naturalWidth;
     const height = e.currentTarget.naturalHeight;
-
-    setAspectRatio(calcAspectRatio({ width, height }));
-  };
-
-  return <img ref={ref} src={src} alt={""} onLoad={(loadedMedia) => onImageLoad(loadedMedia)} />;
-});
-
-export const VideoWrapper = React.forwardRef<HTMLVideoElement, WrapperProps>(({ src, setAspectRatio }, ref) => {
-  console.log({ src, setAspectRatio, ref });
-
-  const onVideoLoad = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-    console.log({ e });
-    const width = e.currentTarget.videoWidth;
-    const height = e.currentTarget.videoWidth;
-
-    setAspectRatio(calcAspectRatio({ width, height }));
+    const ratio = calcAspectRatio({ width, height });
+    handleCalculatedRatio(ratio);
   };
 
   return (
-    <div>
-      <video
+    <>
+      <img
+        css={css({
+          display: "block",
+          top: 0,
+          bottom: 0,
+          left: 0,
+          right: 0,
+          maxWidth: "100%",
+          maxHeight: "100%",
+        })}
         ref={ref}
-        muted
-        onLoad={(e) => onVideoLoad(e)}
-        // onLoadedData={(e) => onVideoLoad(e)}
-        // onLoadedMetadata={(e) => onVideoLoad(e)}
-        autoPlay
-        controls={false}
-        playsInline
-      >
-        <source src={src} />
-      </video>
-    </div>
+        src={src}
+        alt={""}
+        loading="lazy"
+        onLoad={(loadedMedia) => onImageLoad(loadedMedia)}
+      />
+    </>
+  );
+});
+
+export const VideoWrapper = React.forwardRef<HTMLVideoElement, WrapperProps>(({ src, handleCalculatedRatio }, ref) => {
+  const onVideoLoad = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+    const width = e.currentTarget.videoWidth;
+    const height = e.currentTarget.videoWidth;
+    const ratio = calcAspectRatio({ width, height });
+    handleCalculatedRatio(ratio);
+  };
+
+  return (
+    <video
+      css={css({
+        display: "block",
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        maxWidth: "100%",
+        maxHeight: "100%",
+      })}
+      ref={ref}
+      muted
+      onLoad={(e) => onVideoLoad(e)}
+      // onLoadedData={(e) => onVideoLoad(e)}
+      // onLoadedMetadata={(e) => onVideoLoad(e)}
+      autoPlay
+      controls={false}
+      playsInline
+    >
+      <source src={src} />
+    </video>
   );
 });
