@@ -1,10 +1,7 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaVersion": 10
-  },
-  "plugins": ["jsx-a11y", "@typescript-eslint/eslint-plugin", "testing-library", "prettier"],
+  "plugins": ["jsx-a11y", "@typescript-eslint", "testing-library", "jest", "prettier"],
   "extends": [
     "plugin:jsx-a11y/recommended",
     "plugin:import/recommended",
@@ -14,6 +11,7 @@
     "airbnb-typescript",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:jest/recommended",
     "prettier"
   ],
   "settings": {
@@ -24,7 +22,8 @@
   "env": {
     "es6": true,
     "browser": true,
-    "node": true
+    "node": true,
+    "jest/globals": true
   },
   "rules": {
     "react/prop-types": "off",
