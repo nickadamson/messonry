@@ -13,7 +13,7 @@ describe("CalcAspectRatioTest", () => {
         const { width, height, ratio } = input;
         const returnedRatio = calcAspectRatio({ width, height });
 
-        expect(ratio === returnedRatio);
+        expect(returnedRatio).toBe(ratio);
       });
     });
   });
