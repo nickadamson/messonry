@@ -1,69 +1,69 @@
-# Title
+# messonry
 
-![banner]()
+[![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+[![license](https://img.shields.io/github/license/nickadamson/messonry.svg)](LICENSE)
 
-![badge]() ![badge]() [![license](https://img.shields.io/github/license/:user/:repo.svg)](LICENSE)
-[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+A messy grid layout library for React. Like a masonry layout; except that it crops images as little as possible, and
+displays them as close to their original aspect ratio as possible.
 
-This is an example file with maximal choices selected.
-
-This is a long description.
+![banner](./preview.png)
 
 ## Table of Contents
 
-- [Security](#security)
-- [Background](#background)
 - [Install](#install)
 - [Usage](#usage)
-- [API](#api)
+<!-- - [API](#api) -->
+- [Maintainers](#maintainers)
 - [Contributing](#contributing)
 - [License](#license)
 
-## Security
-
-### Any optional sections
-
-## Background
-
-### Any optional sections
-
 ## Install
 
-This module depends upon a knowledge of [Markdown]().
-
+```
+npm i messonry
 ```
 
-```
+or
 
-### Any optional sections
+```
+yarn add messonry
+```
 
 ## Usage
 
 ```
+import MessonryGrid from "messonry";
 
+const Component = () => {
+    const media: GridItem[] = [
+        { src: '<URL>', mimeType: "image" || "video" },
+        ...
+    ]
+
+    return (
+        <>
+            <MessonryGrid items={media} />
+        </>
+    )
+}
 ```
 
-Note: The `license` badge image link at the top of this file should be updated with the correct `:user` and `:repo`.
+<!-- ## API -->
+<!-- TODO -->
 
-### Any optional sections
+## Maintainers
 
-## API
-
-### Any optional sections
-
-## More optional sections
+[@nickadamson](https://github.com/nickadamson)
 
 ## Contributing
 
-See [the contributing file](CONTRIBUTING.md)!
+<!-- TODO See [the contributing file](CONTRIBUTING.md)! -->
 
 PRs accepted.
 
-Small note: If editing the Readme, please conform to the
+Small note: If editing the README, please conform to the
 [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
-
-### Any optional sections
 
 ## License
 
-[MIT © Richard McRichface.](../LICENSE)
+[MIT © 2022 Nick Adamson](../LICENSE)
