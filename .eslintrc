@@ -39,7 +39,8 @@
     "linebreak-style": ["error", "unix"],
     "react/display-name": "off",
     "react/function-component-definition": "off",
-    "react/no-unknown-property": ["error", { "ignore": ["css"] }]
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
+    "react/react-in-jsx-scope": "off"
   },
   "overrides": [
     {
