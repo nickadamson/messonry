@@ -58,15 +58,12 @@ const GridItem: React.FC<GridItemProps> = ({ item, options, ratio, index, update
           css={css({
             display: "flex",
             width: "100%",
-            margin: "inherit",
           })}
         >
-          {/* Yes, the div above and below are the same. */}
           <div
             css={css({
               display: "flex",
-              width: "100%",
-              margin: "inherit",
+              margin: "0.75rem",
             })}
           >
             {src && mimeType === "image" && (

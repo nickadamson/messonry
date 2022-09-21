@@ -1,6 +1,5 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { within, userEvent } from "@storybook/testing-library";
 import MessonryGrid from "../components/MessonryGrid";
 
 import gridItems from "./images.json";
@@ -17,8 +16,8 @@ export default {
       <div
         style={{
           display: "flex",
-          width: "100vw",
-          height: "100vh",
+          width: "100%",
+          height: "100%",
           maxWidth: "2560px",
           maxHeight: "1440px",
           overflowY: "scroll",

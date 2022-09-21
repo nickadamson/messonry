@@ -33,7 +33,8 @@ export const ImageWrapper = React.forwardRef<HTMLImageElement, WrapperProps>(({ 
         ref={ref}
         src={src}
         alt={""}
-        loading="lazy"
+        // TODO let users configure loady after specified index
+        // loading="lazy"
         onLoad={(loadedMedia) => onImageLoad(loadedMedia)}
       />
     </>
@@ -62,6 +63,7 @@ export const VideoWrapper = React.forwardRef<HTMLVideoElement, WrapperProps>(({ 
       ref={ref}
       muted
       onLoad={(e) => onVideoLoad(e)}
+      // TODO test these
       // onLoadedData={(e) => onVideoLoad(e)}
       // onLoadedMetadata={(e) => onVideoLoad(e)}
       autoPlay
