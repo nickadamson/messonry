@@ -33,7 +33,7 @@ export const ImageWrapper = React.forwardRef<HTMLImageElement, WrapperProps>(({ 
         ref={ref}
         src={src}
         alt={""}
-        loading="lazy"
+        // loading="lazy"
         onLoad={(loadedMedia) => onImageLoad(loadedMedia)}
       />
     </>
