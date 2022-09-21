@@ -20,6 +20,7 @@ export type Item = {
   // Media
   src?: string;
   mimeType?: SupportedMimeTypes;
+  alt?: string;
   // JSX.Element
   content?: React.ReactNode;
 };
@@ -51,7 +52,7 @@ const GridItem: React.FC<GridItemProps> = ({ item, options, ratio, index, update
     if (ratio !== aspectRatio) setAspectRatio(ratio);
   }, [ratio, aspectRatio]);
 
-  const { src, mimeType, content } = item;
+  const { src, alt, mimeType, content } = item;
 
   return (
     <>
@@ -76,6 +77,7 @@ const GridItem: React.FC<GridItemProps> = ({ item, options, ratio, index, update
                 src={src}
                 ref={mediaRef as React.MutableRefObject<HTMLImageElement>}
                 handleCalculatedRatio={handleCalculatedRatio}
+                alt={alt}
               />
             )}
 

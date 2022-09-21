@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import React from "react";
@@ -7,16 +8,20 @@ import { SupportedAspectRatio } from "../constants";
 
 type WrapperProps = {
   src: string;
+  alt?: string;
   handleCalculatedRatio: (calculatedRatio: SupportedAspectRatio) => void;
 };
 
-export const ImageWrapper = React.forwardRef<HTMLImageElement, WrapperProps>(({ src, handleCalculatedRatio }, ref) => {
+export const ImageWrapper = React.forwardRef<HTMLImageElement, WrapperProps>(
+  ({ src, alt, handleCalculatedRatio }, ref) => {
   const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const width = e.currentTarget.naturalWidth;
     const height = e.currentTarget.naturalHeight;
     const ratio = calcAspectRatio({ width, height });
     handleCalculatedRatio(ratio);
   };
+
+    const hiddenFromScreenReaders = alt ? false : true;
 
   return (
     <>
@@ -32,14 +37,16 @@ export const ImageWrapper = React.forwardRef<HTMLImageElement, WrapperProps>(({ 
         })}
         ref={ref}
         src={src}
-        alt={""}
+          alt={alt}
+          aria-hidden={hiddenFromScreenReaders}
         // TODO let users configure loady after specified index
         // loading="lazy"
         onLoad={(loadedMedia) => onImageLoad(loadedMedia)}
       />
     </>
   );
-});
+  }
+);
 
 export const VideoWrapper = React.forwardRef<HTMLVideoElement, WrapperProps>(({ src, handleCalculatedRatio }, ref) => {
   const onVideoLoad = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
