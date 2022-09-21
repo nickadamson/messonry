@@ -11,10 +11,15 @@ export type ItemOptions = {
   placeholder: boolean;
 };
 
+export enum SupportedMimeTypes {
+  Image = "image",
+  Video = "video",
+}
+
 export type Item = {
   // Media
   src?: string;
-  mimeType?: "image" | "video";
+  mimeType?: SupportedMimeTypes;
   // JSX.Element
   content?: React.ReactNode;
 };
