@@ -10,10 +10,11 @@ type WrapperProps = {
   src: string;
   alt?: string;
   handleCalculatedRatio: (calculatedRatio: SupportedAspectRatio) => void;
+  index: number;
 };
 
 export const ImageWrapper = React.forwardRef<HTMLImageElement, WrapperProps>(
-  ({ src, alt, handleCalculatedRatio }, ref) => {
+  ({ src, alt, handleCalculatedRatio, index }, ref) => {
     const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
       const width = e.currentTarget.naturalWidth;
       const height = e.currentTarget.naturalHeight;
@@ -35,6 +36,7 @@ export const ImageWrapper = React.forwardRef<HTMLImageElement, WrapperProps>(
             maxWidth: "100%",
             maxHeight: "100%",
           })}
+          data-testid={`img-${index}`}
           ref={ref}
           src={src}
           onLoad={(e) => onImageLoad(e)}
@@ -48,33 +50,36 @@ export const ImageWrapper = React.forwardRef<HTMLImageElement, WrapperProps>(
   }
 );
 
-export const VideoWrapper = React.forwardRef<HTMLVideoElement, WrapperProps>(({ src, handleCalculatedRatio }, ref) => {
-  const onVideoLoad = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-    const width = e.currentTarget.videoWidth;
-    const height = e.currentTarget.videoHeight;
-    const ratio = calcAspectRatio({ width, height });
-    handleCalculatedRatio(ratio);
-  };
+export const VideoWrapper = React.forwardRef<HTMLVideoElement, WrapperProps>(
+  ({ src, handleCalculatedRatio, index }, ref) => {
+    const onVideoLoad = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+      const width = e.currentTarget.videoWidth;
+      const height = e.currentTarget.videoHeight;
+      const ratio = calcAspectRatio({ width, height });
+      handleCalculatedRatio(ratio);
+    };
 
-  return (
-    <video
-      css={css({
-        display: "block",
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0,
-        maxWidth: "100%",
-        maxHeight: "100%",
-      })}
-      ref={ref}
-      muted
-      onLoadedMetadata={(e) => onVideoLoad(e)}
-      autoPlay
-      controls={false}
-      playsInline
-    >
-      <source src={src} />
-    </video>
-  );
-});
+    return (
+      <video
+        css={css({
+          display: "block",
+          top: 0,
+          bottom: 0,
+          left: 0,
+          right: 0,
+          maxWidth: "100%",
+          maxHeight: "100%",
+        })}
+        data-testid={`video-${index}`}
+        ref={ref}
+        muted
+        onLoadedMetadata={(e) => onVideoLoad(e)}
+        autoPlay
+        controls={false}
+        playsInline
+      >
+        <source src={src} />
+      </video>
+    );
+  }
+);
