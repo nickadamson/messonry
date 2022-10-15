@@ -50,5 +50,5 @@
       }
     }
   ],
-  "ignorePatterns": ["src/stories/**/*", "jest.config.js"]
+  "ignorePatterns": ["src/stories/**/*"]
 }
