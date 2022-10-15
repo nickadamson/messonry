@@ -2,7 +2,7 @@
 import { Global as EmotionGlobal } from "@emotion/react";
 import React from "react";
 
-const StyleWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const StyleWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <>
       <EmotionGlobal
@@ -33,5 +33,3 @@ const StyleWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     </>
   );
 };
-
-export default StyleWrapper;

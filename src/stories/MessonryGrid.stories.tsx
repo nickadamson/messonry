@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import MessonryGrid from "../components/MessonryGrid";
+import { MessonryGrid } from "../components/MessonryGrid";
 
 import gridItems from "./images.json";
 

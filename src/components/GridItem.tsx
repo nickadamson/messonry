@@ -38,7 +38,7 @@ export type GridItemProps = {
  */
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const GridItem: React.FC<GridItemProps> = ({ item, options, ratio, index, updateRatios }): JSX.Element => {
+export const GridItem: React.FC<GridItemProps> = ({ item, options, ratio, index, updateRatios }): JSX.Element => {
   const mediaRef = React.useRef<HTMLVideoElement | HTMLImageElement>();
   const elementRef = React.useRef<HTMLDivElement>(null);
   const [aspectRatio, setAspectRatio] = React.useState<SupportedAspectRatio>(ratio);
@@ -103,5 +103,3 @@ const GridItem: React.FC<GridItemProps> = ({ item, options, ratio, index, update
     </>
   );
 };
-
-export default GridItem;

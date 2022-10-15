@@ -4,8 +4,8 @@ import React from "react";
 
 import { SupportedAspectRatio, GRID_STYLE } from "../utils";
 
-import GridItem, { Item } from "./GridItem";
-import StyleWrapper from "./StyleWrapper";
+import { GridItem, Item } from "./GridItem";
+import { StyleWrapper } from "./StyleWrapper";
 
 type MessonryOptions = {
   placeholder: boolean;
@@ -22,7 +22,7 @@ export type MessonryGridProps = {
  *           the media's aspect ratio
  */
 
-const MessonryGrid: React.FC<MessonryGridProps> = ({ items, options }): JSX.Element => {
+export const MessonryGrid: React.FC<MessonryGridProps> = ({ items, options }): JSX.Element => {
   const [ratios, setRatios] = React.useState<SupportedAspectRatio[]>(items.map(() => "hidden"));
 
   const updateRatios = (ratio: SupportedAspectRatio, index: number) => {
@@ -69,5 +69,3 @@ const MessonryGrid: React.FC<MessonryGridProps> = ({ items, options }): JSX.Elem
     </StyleWrapper>
   );
 };
-
-export default MessonryGrid;

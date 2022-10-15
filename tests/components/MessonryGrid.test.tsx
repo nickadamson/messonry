@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 
 import { Item, SupportedMimeTypes } from "../../src/components/GridItem";
-import MessonryGrid from "../../src/components/MessonryGrid";
+import { MessonryGrid } from "../../src/components/MessonryGrid";
 import images from "../../src/stories/images.json";
 
 const tenImages = images.slice(0, 10) as Item[];
