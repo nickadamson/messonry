@@ -8,6 +8,7 @@ module.exports = {
   ],
   framework: "@storybook/react",
   features: {
+    storyStoreV7: true,
     emotionAlias: false,
   },
 };
