@@ -1,4 +1,4 @@
-import { SupportedAspectRatio, Dimensions, getAspectRatio } from "./getAspectRatio";
+import { getAspectRatio, SupportedAspectRatio, Dimensions } from "./getAspectRatio";
 import { GRID_STYLE, RATIO_STYLES } from "./styles";
 
-export { getAspectRatio, Dimensions, GRID_STYLE, RATIO_STYLES, SupportedAspectRatio };
+export { getAspectRatio, SupportedAspectRatio, Dimensions, GRID_STYLE, RATIO_STYLES };
