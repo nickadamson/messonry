@@ -1,6 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react";
 
-import { SupportedAspectRatio } from "./constants";
+import { SupportedAspectRatio } from "./getAspectRatio";
 
 export const GRID_STYLE = css({
   display: "grid",

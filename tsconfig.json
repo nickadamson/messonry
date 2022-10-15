@@ -14,8 +14,10 @@
     "declaration": true,
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "resolveJsonModule": true
   },
   "include": ["src", "tests"],
-  "exclude": ["src/stories"]
+  "exclude": ["src/stories"],
+  "types": ["node", "jest", "@testing-library/jest-dom"]
 }
