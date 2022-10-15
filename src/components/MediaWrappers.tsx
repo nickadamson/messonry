@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import type Image from "next/image";
 import React from "react";
 
 import { getAspectRatio, SupportedAspectRatio } from "../utils";
@@ -12,8 +13,45 @@ type WrapperProps = {
   index: number;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const NextImageWrapper = React.forwardRef(({ src, alt, handleCalculatedRatio, index }: WrapperProps, ref) => {
+  const nextImagePath = require.resolve("next/image") as unknown as { default: typeof Image };
+  const NextImage = nextImagePath?.default;
+
+  const onImageLoad = (width: number, height: number) => {
+    const ratio = getAspectRatio({ width, height });
+    handleCalculatedRatio(ratio);
+  };
+
+  const hiddenFromScreenReaders = alt ? false : true;
+
+  return (
+    <>
+      <NextImage
+        style={
+          css({
+            display: "block",
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            maxWidth: "100%",
+            maxHeight: "100%",
+          }) as React.CSSProperties
+        }
+        data-testid={`img-${index}`}
+        // ref={ref}
+        onLoadingComplete={({ naturalWidth, naturalHeight }) => onImageLoad(naturalWidth, naturalHeight)}
+        src={src}
+        alt={alt}
+        aria-hidden={hiddenFromScreenReaders}
+      />
+    </>
+  );
+});
+
 export const ImageWrapper = React.forwardRef<HTMLImageElement, WrapperProps>(
-  ({ src, alt, handleCalculatedRatio, index }, ref) => {
+  ({ src, alt, handleCalculatedRatio, index }: WrapperProps, ref) => {
     const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
       const width = e.currentTarget.naturalWidth;
       const height = e.currentTarget.naturalHeight;
