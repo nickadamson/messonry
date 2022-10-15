@@ -4,10 +4,10 @@ import React from "react";
 
 import { SupportedAspectRatio, RATIO_STYLES } from "../utils";
 
-import { ImageWrapper, VideoWrapper } from "./MediaWrappers";
+import { ImageWrapper, NextImageWrapper, VideoWrapper } from "./MediaWrappers";
 
 export type ItemOptions = {
-  placeholder: boolean;
+  useNextImage: boolean;
 };
 
 export enum SupportedMimeTypes {
@@ -73,13 +73,25 @@ export const GridItem: React.FC<GridItemProps> = ({ item, options, ratio, index,
             })}
           >
             {src && mimeType === "image" && (
-              <ImageWrapper
-                src={src}
-                ref={mediaRef as React.MutableRefObject<HTMLImageElement>}
-                handleCalculatedRatio={handleCalculatedRatio}
-                alt={alt}
-                index={index}
-              />
+              <>
+                {options?.useNextImage ? (
+                  <NextImageWrapper
+                    src={src}
+                    ref={mediaRef as React.MutableRefObject<HTMLElement>}
+                    handleCalculatedRatio={handleCalculatedRatio}
+                    alt={alt}
+                    index={index}
+                  />
+                ) : (
+                  <ImageWrapper
+                    src={src}
+                    ref={mediaRef as React.MutableRefObject<HTMLImageElement>}
+                    handleCalculatedRatio={handleCalculatedRatio}
+                    alt={alt}
+                    index={index}
+                  />
+                )}
+              </>
             )}
 
             {src && mimeType === "video" && (
