@@ -1,9 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import React from "react";
-import { SupportedAspectRatio } from "src/constants";
 
-import { GRID_STYLE } from "../styles";
+import { SupportedAspectRatio, GRID_STYLE } from "../utils";
 
 import GridItem, { Item } from "./GridItem";
 import StyleWrapper from "./StyleWrapper";

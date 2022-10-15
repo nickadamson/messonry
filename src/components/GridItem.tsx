@@ -2,8 +2,7 @@
 import { css } from "@emotion/react";
 import React from "react";
 
-import { SupportedAspectRatio } from "../constants";
-import { RATIO_STYLES } from "../styles";
+import { SupportedAspectRatio, RATIO_STYLES } from "../utils";
 
 import { ImageWrapper, VideoWrapper } from "./MediaWrappers";
 

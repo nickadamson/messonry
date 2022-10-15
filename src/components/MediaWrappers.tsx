@@ -3,8 +3,7 @@
 import { css } from "@emotion/react";
 import React from "react";
 
-import calcAspectRatio from "../calcAspectRatio";
-import { SupportedAspectRatio } from "../constants";
+import { getAspectRatio, SupportedAspectRatio } from "../utils";
 
 type WrapperProps = {
   src: string;
@@ -18,7 +17,7 @@ export const ImageWrapper = React.forwardRef<HTMLImageElement, WrapperProps>(
     const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
       const width = e.currentTarget.naturalWidth;
       const height = e.currentTarget.naturalHeight;
-      const ratio = calcAspectRatio({ width, height });
+      const ratio = getAspectRatio({ width, height });
       handleCalculatedRatio(ratio);
     };
 
@@ -55,7 +54,7 @@ export const VideoWrapper = React.forwardRef<HTMLVideoElement, WrapperProps>(
     const onVideoLoad = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
       const width = e.currentTarget.videoWidth;
       const height = e.currentTarget.videoHeight;
-      const ratio = calcAspectRatio({ width, height });
+      const ratio = getAspectRatio({ width, height });
       handleCalculatedRatio(ratio);
     };
 

@@ -1,4 +1,4 @@
-import calcAspectRatio from "../src/calcAspectRatio";
+import { getAspectRatio } from "../src/utils";
 
 const inputs = [
   { width: 1, height: 1, ratio: "1x1" },
@@ -6,12 +6,12 @@ const inputs = [
   { width: 2160, height: 3840, ratio: "9x16" },
 ];
 
-describe("CalcAspectRatioTest", () => {
+describe("getAspectRatioTest", () => {
   describe("correctly calculates and returns the aspect ratio of a given width & height", () => {
     inputs.forEach((input) => {
       it(`${input.ratio}`, async () => {
         const { width, height, ratio } = input;
-        const returnedRatio = calcAspectRatio({ width, height });
+        const returnedRatio = getAspectRatio({ width, height });
 
         expect(returnedRatio).toBe(ratio);
       });
