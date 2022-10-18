@@ -18,4 +18,24 @@ describe("MessonryGrid Component Test", () => {
     render(<MessonryGrid items={testVideos} options={defaultOptions} />);
     expect(screen.getByTestId("video-0")).toHaveClass("css-3ty7jz");
   });
+
+  describe("NextJS support", () => {
+    test("Should use next/image if option is enabled and installed locally", () => {
+      render(<MessonryGrid items={testImages.slice(0, 1)} options={{ ...defaultOptions, useNextImage: true }} />);
+      expect(screen.getByTestId("next/image-0")).toHaveStyle(
+        "position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+      );
+    });
+
+    test("Should fail to use next/image if option is enabled and not installed locally", () => {
+      jest.mock("next/image", () => {
+        return {};
+      });
+
+      expect(() => {
+        render(<MessonryGrid items={testImages.slice(0, 1)} options={{ ...defaultOptions, useNextImage: true }} />);
+        screen.getByTestId("next/image-0");
+      }).toThrow();
+    });
+  });
 });
