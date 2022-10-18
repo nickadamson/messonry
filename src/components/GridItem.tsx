@@ -77,7 +77,7 @@ export const GridItem: React.FC<GridItemProps> = ({ item, options, ratio, index,
                 {options?.useNextImage ? (
                   <NextImageWrapper
                     src={src}
-                    ref={mediaRef as React.MutableRefObject<HTMLElement>}
+                    ref={mediaRef}
                     handleCalculatedRatio={handleCalculatedRatio}
                     alt={alt}
                     index={index}

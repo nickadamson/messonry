@@ -7,7 +7,7 @@ import { SupportedAspectRatio, GRID_STYLE } from "../utils";
 import { GridItem, Item } from "./GridItem";
 import { StyleWrapper } from "./StyleWrapper";
 
-type MessonryOptions = {
+export type MessonryOptions = {
   useNextImage: boolean;
 };
 
