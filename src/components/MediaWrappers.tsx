@@ -1,7 +1,5 @@
-/* eslint-disable jsx-a11y/alt-text */
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import type Image from "next/image";
 import React from "react";
 
 import { getAspectRatio, SupportedAspectRatio } from "../utils";
@@ -12,12 +10,7 @@ type WrapperProps = {
   handleCalculatedRatio: (calculatedRatio: SupportedAspectRatio) => void;
   index: number;
 };
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const NextImageWrapper = React.forwardRef(({ src, alt, handleCalculatedRatio, index }: WrapperProps, ref) => {
-  const nextImagePath = require.resolve("next/image") as unknown as { default: typeof Image };
-  const NextImage = nextImagePath?.default;
-
   const onImageLoad = (width: number, height: number) => {
     const ratio = getAspectRatio({ width, height });
     handleCalculatedRatio(ratio);
@@ -25,29 +18,30 @@ export const NextImageWrapper = React.forwardRef(({ src, alt, handleCalculatedRa
 
   const hiddenFromScreenReaders = alt ? false : true;
 
-  return (
-    <>
-      <NextImage
-        style={
-          css({
-            display: "block",
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            maxWidth: "100%",
-            maxHeight: "100%",
-          }) as React.CSSProperties
-        }
-        data-testid={`img-${index}`}
-        // ref={ref}
-        onLoadingComplete={({ naturalWidth, naturalHeight }) => onImageLoad(naturalWidth, naturalHeight)}
-        src={src}
-        alt={alt}
-        aria-hidden={hiddenFromScreenReaders}
-      />
-    </>
-  );
+  try {
+    // eslint-disable-next-line import/no-extraneous-dependencies, @typescript-eslint/no-var-requires
+    return React.createElement(require("next/image").default, {
+      src: src,
+      alt: alt,
+      layout: "fill",
+      ref: ref,
+      "aria-hidden": hiddenFromScreenReaders,
+      style: css`
+        display: "block",
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        maxWidth: "100%",
+        maxHeight: "100%",
+      `,
+      "data-testid": `next/image-${index}`,
+      onLoadingComplete: ({ naturalWidth, naturalHeight }: { naturalWidth: number; naturalHeight: number }) =>
+        onImageLoad(naturalWidth, naturalHeight),
+    });
+  } catch (error) {
+    return <></>; // Image Wrapper
+  }
 });
 
 export const ImageWrapper = React.forwardRef<HTMLImageElement, WrapperProps>(
