@@ -1,6 +1,6 @@
 module.exports = {
   preset: "ts-jest",
-  verbose: true,
+  verbose: false,
   testEnvironment: "jsdom",
   collectCoverageFrom: ["<rootDir>/tests/**/*.{ts,tsx,js,jsx}"],
   modulePathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/build/"],

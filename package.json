@@ -24,7 +24,7 @@
   "scripts": {
     "commit": "git-cz",
     "lint": "eslint src/ tests/ --ext .ts,.tsx --config .eslintrc",
-    "test": "jest",
+    "test": "jest --silent",
     "dev": "start-storybook -p 6006",
     "build": "pnpm prepack && rimraf ./dist/tests",
     "prepack": "pnpm clean && tsc",

@@ -18,9 +18,11 @@ describe("getAspectRatioTest", () => {
     });
   });
 
-  describe("gracefully handles errors", () => {
-    it("should ...", async () => {
-      // TODO add error handling test
+  describe("error handling", () => {
+    it("should return 'hidden' if unable to calculate an aspect ratio", async () => {
+      const returnedRatio = getAspectRatio({ width: "NaN" as unknown as number, height: "NaN" as unknown as number });
+
+      expect(returnedRatio).toBe("hidden");
     });
   });
 });
