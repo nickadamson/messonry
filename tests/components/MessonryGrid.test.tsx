@@ -28,14 +28,17 @@ describe("MessonryGrid Component Test", () => {
     });
 
     test("Should fail to use next/image if option is enabled and not installed locally", () => {
-      jest.mock("next/image", () => {
-        return {};
-      });
+      // mock next/image missing
+      jest.mock("next/image", () => {});
+      // silence error when next/image fails to load
+      jest.mock("console", () => {});
 
       expect(() => {
         render(<MessonryGrid items={testImages.slice(0, 1)} options={{ ...defaultOptions, useNextImage: true }} />);
         screen.getByTestId("next/image-0");
       }).toThrow();
+
+      jest.clearAllMocks();
     });
   });
 });
