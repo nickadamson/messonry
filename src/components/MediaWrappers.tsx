@@ -4,13 +4,82 @@ import React from "react";
 
 import { getAspectRatio, SupportedAspectRatio } from "../utils";
 
+export const ImageWrapper = ({ src, alt, handleCalculatedRatio, index }: WrapperProps) => {
+  const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const width = e.currentTarget.naturalWidth;
+    const height = e.currentTarget.naturalHeight;
+    const ratio = getAspectRatio({ width, height });
+    handleCalculatedRatio(ratio);
+  };
+
+  const hiddenFromScreenReaders = alt ? false : true;
+
+  return (
+    <>
+      <img
+        css={css({
+          display: "block",
+          top: 0,
+          bottom: 0,
+          left: 0,
+          right: 0,
+          maxWidth: "100%",
+          maxHeight: "100%",
+        })}
+        data-testid={`img-${index}`}
+        src={src}
+        onLoad={(e) => onImageLoad(e)}
+        alt={alt}
+        aria-hidden={hiddenFromScreenReaders}
+        // TODO let users configure loady after specified index
+        // loading="lazy"
+      />
+    </>
+  );
+};
+
+export const VideoWrapper = ({ src, handleCalculatedRatio, index }: WrapperProps) => {
+  const onVideoLoad = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+    const width = e.currentTarget.videoWidth;
+    const height = e.currentTarget.videoHeight;
+    const ratio = getAspectRatio({ width, height });
+    handleCalculatedRatio(ratio);
+  };
+
+  return (
+    <>
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+      <video
+        data-testid={`video-${index}`}
+        css={css({
+          display: "block",
+          top: 0,
+          bottom: 0,
+          left: 0,
+          right: 0,
+          maxWidth: "100%",
+          maxHeight: "100%",
+        })}
+        // muted
+        onLoadedMetadata={(e) => onVideoLoad(e)}
+        // autoPlay={false}
+        // controls={false}
+        // playsInline
+      >
+        <source src={src} />
+      </video>
+    </>
+  );
+};
+
 type WrapperProps = {
   src: string;
   alt?: string;
   handleCalculatedRatio: (calculatedRatio: SupportedAspectRatio) => void;
   index: number;
 };
-export const NextImageWrapper = React.forwardRef(({ src, alt, handleCalculatedRatio, index }: WrapperProps, ref) => {
+
+export const NextImageWrapper = ({ src, alt, handleCalculatedRatio, index }: WrapperProps) => {
   const onImageLoad = (width: number, height: number) => {
     const ratio = getAspectRatio({ width, height });
     handleCalculatedRatio(ratio);
@@ -24,9 +93,8 @@ export const NextImageWrapper = React.forwardRef(({ src, alt, handleCalculatedRa
       src: src,
       alt: alt,
       layout: "fill",
-      ref: ref,
       "aria-hidden": hiddenFromScreenReaders,
-      style: css`
+      css: css`
         display: "block",
         top: 0,
         bottom: 0,
@@ -40,77 +108,6 @@ export const NextImageWrapper = React.forwardRef(({ src, alt, handleCalculatedRa
         onImageLoad(naturalWidth, naturalHeight),
     });
   } catch (error) {
-    return <></>; // Image Wrapper
+    return <ImageWrapper src={src} handleCalculatedRatio={handleCalculatedRatio} alt={alt} index={index} />;
   }
-});
-
-export const ImageWrapper = React.forwardRef<HTMLImageElement, WrapperProps>(
-  ({ src, alt, handleCalculatedRatio, index }: WrapperProps, ref) => {
-    const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-      const width = e.currentTarget.naturalWidth;
-      const height = e.currentTarget.naturalHeight;
-      const ratio = getAspectRatio({ width, height });
-      handleCalculatedRatio(ratio);
-    };
-
-    const hiddenFromScreenReaders = alt ? false : true;
-
-    return (
-      <>
-        <img
-          css={css({
-            display: "block",
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            maxWidth: "100%",
-            maxHeight: "100%",
-          })}
-          data-testid={`img-${index}`}
-          ref={ref}
-          src={src}
-          onLoad={(e) => onImageLoad(e)}
-          alt={alt}
-          aria-hidden={hiddenFromScreenReaders}
-          // TODO let users configure loady after specified index
-          // loading="lazy"
-        />
-      </>
-    );
-  }
-);
-
-export const VideoWrapper = React.forwardRef<HTMLVideoElement, WrapperProps>(
-  ({ src, handleCalculatedRatio, index }, ref) => {
-    const onVideoLoad = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-      const width = e.currentTarget.videoWidth;
-      const height = e.currentTarget.videoHeight;
-      const ratio = getAspectRatio({ width, height });
-      handleCalculatedRatio(ratio);
-    };
-
-    return (
-      <video
-        css={css({
-          display: "block",
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          maxWidth: "100%",
-          maxHeight: "100%",
-        })}
-        data-testid={`video-${index}`}
-        ref={ref}
-        muted
-        onLoadedMetadata={(e) => onVideoLoad(e)}
-        autoPlay
-        controls={false}
-        playsInline
-      >
-        <source src={src} />
-      </video>
-    );
-  }
-);
+};

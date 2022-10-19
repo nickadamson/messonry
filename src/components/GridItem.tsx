@@ -39,15 +39,15 @@ export type GridItemProps = {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const GridItem: React.FC<GridItemProps> = ({ item, options, ratio, index, updateRatios }): JSX.Element => {
-  const mediaRef = React.useRef<HTMLVideoElement | HTMLImageElement>();
-  const elementRef = React.useRef<HTMLDivElement>(null);
+  // const mediaRef = React.useRef<HTMLVideoElement | HTMLImageElement>();
+  // const elementRef = React.useRef<HTMLDivElement>(null);
   const [aspectRatio, setAspectRatio] = React.useState<SupportedAspectRatio>(ratio);
 
   const handleCalculatedRatio = (calculatedRatio: SupportedAspectRatio) => {
     updateRatios(calculatedRatio, index);
   };
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (ratio !== aspectRatio) setAspectRatio(ratio);
   }, [ratio, aspectRatio]);
 
@@ -75,38 +75,19 @@ export const GridItem: React.FC<GridItemProps> = ({ item, options, ratio, index,
             {src && mimeType === "image" && (
               <>
                 {options?.useNextImage ? (
-                  <NextImageWrapper
-                    src={src}
-                    ref={mediaRef}
-                    handleCalculatedRatio={handleCalculatedRatio}
-                    alt={alt}
-                    index={index}
-                  />
+                  <NextImageWrapper src={src} handleCalculatedRatio={handleCalculatedRatio} alt={alt} index={index} />
                 ) : (
-                  <ImageWrapper
-                    src={src}
-                    ref={mediaRef as React.MutableRefObject<HTMLImageElement>}
-                    handleCalculatedRatio={handleCalculatedRatio}
-                    alt={alt}
-                    index={index}
-                  />
+                  <ImageWrapper src={src} handleCalculatedRatio={handleCalculatedRatio} alt={alt} index={index} />
                 )}
               </>
             )}
 
             {src && mimeType === "video" && (
-              <VideoWrapper
-                src={src}
-                ref={mediaRef as React.MutableRefObject<HTMLVideoElement>}
-                handleCalculatedRatio={handleCalculatedRatio}
-                index={index}
-              />
+              <VideoWrapper src={src} handleCalculatedRatio={handleCalculatedRatio} index={index} />
             )}
             {!src && !mimeType && content !== undefined && (
               <>
-                <div data-testid={`node-${index}`} ref={elementRef}>
-                  {content as React.ReactNode}
-                </div>
+                <div data-testid={`node-${index}`}>{content as React.ReactNode}</div>
               </>
             )}
           </div>
