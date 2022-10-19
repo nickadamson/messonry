@@ -3,6 +3,11 @@ import { MessonryOptions } from "src/components/MessonryGrid";
 
 export const defaultOptions: MessonryOptions = { useNextImage: false };
 
+export const baseStyleString = `display: block; top: 0; bottom: 0; left: 0; right: 0; maxWidth: 100%; maxHeight: 100%;`;
+
+// https://stackoverflow.com/a/63137432
+export const blob = new Blob(["a".repeat(10)], { type: "application/pdf" }).toString();
+
 export const testImages = [
   {
     src: "https://images.unsplash.com/photo-1656025896950-8b6554141cce?ixid=MnwzNDg4NTB8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NTg1MjU4MzA&ixlib=rb-1.2.1",
@@ -41,7 +46,7 @@ export const testImages = [
     mimeType: "image",
   },
   {
-    src: "https://images.unsplash.com/photo-1658299274928-b81f6c8a6b08?ixid=MnwzNDg4NTB8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NTg1MjU4MzA&ixlib=rb-1.2.1",
+    src: blob, // not an image
     mimeType: "image",
   },
 ] as Item[];
@@ -49,6 +54,10 @@ export const testImages = [
 export const testVideos = [
   {
     src: "https://infura-ipfs.io/ipfs/bafybeibjz7p2sbp2s7pyt6gu5ngf3dlwx3kc4d2wgpozq34oqpmckhioqq",
+    mimeType: "video",
+  },
+  {
+    src: blob, // not a video
     mimeType: "video",
   },
 ] as Item[];
