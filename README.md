@@ -33,6 +33,18 @@
     except that it displays media at its intended aspect ratio.
 </p>
 
+---
+
+## Warning
+
+### I'd like to release v1.0.0 with full support of Next v13.
+
+## Consider the API experimental after messonry@0.2.0.
+
+### Using the 'next' branch until stable release. Appreciate your understanding.
+
+---
+
 ## Table of Contents
 
 - [Install](#install)
@@ -64,14 +76,19 @@ import MessonryGrid from "messonry";
 
 const MyMessyLandingPage = () => {
     const myMediaArray = [
-        { src: 'https://url-of-image.com/', mimeType: "image", alt?: "description of image" },
-        { src: 'https://url-of-video.com/', mimeType: "video", alt?: "description of video" },
+        { src: 'https://url-of-image.com/', mimeType: "image", alt: "description of image" },
+        { src: 'https://url-of-video.com/', mimeType: "video", alt: "description of video" },
         { content: <MyCustomComponent /> }
     ]
 
     const gridOptions = {
       useNextImage={true},
-      // more to come soon!
+       nextImageConfig: {
+        quality: 90,
+        priority: true,
+        loading: "eager",
+        unoptimized: false,
+      },
     }
 
     return (
