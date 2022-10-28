@@ -37,7 +37,7 @@ export function getAspectRatio({ width, height }: Dimensions): SupportedAspectRa
       aspectRatio = "5x4";
     } else if (ratio <= 1.385) {
       aspectRatio = "4x3";
-    } else if (ratio <= 1.5) {
+    } else if (ratio <= 1.47) {
       aspectRatio = "7x5";
     } else if (ratio <= 1.68) {
       aspectRatio = "3x2";
