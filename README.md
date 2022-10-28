@@ -1,51 +1,104 @@
-# messonry
+<p align="center">
+  <a href="https://nickadamson.github.io/messonry/?path=/story/example-messonry--default">
+    <h1 align="center">messonry</h1>
+  </a>
+  <p align="center">
+    <a aria-label="License" href="LICENSE">
+      <img alt="" src="https://img.shields.io/github/license/nickadamson/messonry.svg?style=flat-square" />
+    </a>
+    <a aria-label="NPM version" href="https://www.npmjs.com/package/messonry">
+      <img alt="" src="https://img.shields.io/npm/v/messonry/latest?style=flat-square" />
+    </a>
+    <a aria-label="Bundlephobia Minzipped Size" href="https://bundlephobia.com/package/messonry@latest">
+      <img alt="" src="https://img.shields.io/bundlephobia/minzip/messonry?color=critical&logo=react&logoColor=critical&style=flat-square" />
+    </a>
+    <a aria-label="Standard README Compliant" href="https://github.com/RichardLitt/standard-readme">
+      <img alt="" src="https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square" />
+    </a>
+  </p>
+  <h2 align="center">
+    A messy grid layout library for React.
+  </h2>
+</p>
 
-[![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
-[![license](https://img.shields.io/github/license/nickadamson/messonry.svg)](LICENSE)
+<p align="center">
+  <picture>
+    <a aria-label="Link to screenshot of webpage using messonry layou" href="https://github.com/nickadamson/messonry/blob/main/preview.png">
+      <img alt="Screenshot of webpage using messonry layout" src="./preview.png" />
+    </a>
+  </picture>
+  <br />
+    Like a masonry layout; 
+    <br />
+    except that it displays media at its intended aspect ratio.
+</p>
 
-A messy grid layout library for React. Like a masonry layout; except that it crops images as little as possible, and
-displays them as close to their original aspect ratio as possible.
+---
 
-![banner](./preview.png)
+## Warning
+
+### I'd like to release v1.0.0 with full support of Next v13.
+
+## Consider the API experimental after messonry@0.2.0.
+
+### Using the 'next' branch until stable release. Appreciate your understanding.
+
+---
 
 ## Table of Contents
 
 - [Install](#install)
-- [Usage](#usage)
-<!-- - [API](#api) -->
+- [Usage](#usage) <!-- - [API](#api) -->
 - [Maintainers](#maintainers)
 - [Contributing](#contributing)
 - [License](#license)
 
-## Install
+## Install with package manager of your choice
 
 ```
-npm i messonry
+pnpm add messonry
 ```
-
-or
 
 ```
 yarn add messonry
 ```
 
+```
+npm i messonry
+```
+
 ## Usage
 
 ```
+
 import MessonryGrid from "messonry";
 
-const Component = () => {
-    const media: GridItem[] = [
-        { src: '<URL>', mimeType: "image" || "video" },
-        ...
+
+const MyMessyLandingPage = () => {
+    const myMediaArray = [
+        { src: 'https://url-of-image.com/', mimeType: "image", alt: "description of image" },
+        { src: 'https://url-of-video.com/', mimeType: "video", alt: "description of video" },
+        { content: <MyCustomComponent /> }
     ]
+
+    const gridOptions = {
+      useNextImage={true},
+       nextImageConfig: {
+        quality: 90,
+        priority: true,
+        loading: "eager",
+        unoptimized: false,
+      },
+    }
 
     return (
         <>
-            <MessonryGrid items={media} />
+            <MessonryGrid items={media} options={gridOptions} />
         </>
     )
+
 }
+
 ```
 
 <!-- ## API -->

@@ -1,7 +1,7 @@
 name: Build Storybook
 on:
   pull_request:
-    branches: [main]
+    branches: [next]
 
 jobs:
   build:

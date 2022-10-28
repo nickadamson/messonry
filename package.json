@@ -1,6 +1,6 @@
 {
   "name": "messonry",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A messy grid layout library for React. Like a masonry layout; except that it crops images as little as possible, and displays them as close to their original aspect ratio as possible.",
   "author": "Nick Adamson",
   "license": "MIT",
