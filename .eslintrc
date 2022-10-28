@@ -50,5 +50,5 @@
       }
     }
   ],
-  "ignorePatterns": ["src/stories/**/*"]
+  "ignorePatterns": ["src/stories/**/*", "README.md"]
 }

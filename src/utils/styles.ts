@@ -11,6 +11,7 @@ export const GRID_STYLE = css({
   gridAutoFlow: "row dense",
   justifyContent: "center",
   justifySelf: "center",
+  gap: "0.75rem",
 });
 
 export const RATIO_STYLES: Record<SupportedAspectRatio, SerializedStyles> = {

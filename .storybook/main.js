@@ -5,10 +5,14 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-viewport",
+    "storybook-addon-next",
   ],
   framework: "@storybook/react",
   features: {
     storyStoreV7: true,
     emotionAlias: false,
+  },
+  core: {
+    builder: "webpack5",
   },
 };
