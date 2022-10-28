@@ -14,7 +14,7 @@ module.exports = {
   setupFilesAfterEnv: ["<rootDir>/jest-setup.ts"],
   testRegex: "/tests/.*\\.(test|spec)?\\.(ts|tsx)$",
   moduleFileExtensions: ["js", "ts", "tsx"],
-  modulePaths: ["<rootDir>/src"],
+  modulePaths: ["<rootDir>"],
   transform: {
     "^.+\\.(j|t)sx?$": ["ts-jest"],
   },
