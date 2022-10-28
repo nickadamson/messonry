@@ -4,6 +4,16 @@ import React from "react";
 
 import { getAspectRatio, SupportedAspectRatio } from "../utils";
 
+import { NextImageConfig } from "./MessonryGrid";
+
+type WrapperProps = {
+  src: string;
+  alt?: string;
+  handleCalculatedRatio: (calculatedRatio: SupportedAspectRatio) => void;
+  index: number;
+  nextImageConfig?: NextImageConfig;
+};
+
 export const ImageWrapper = ({ src, alt, handleCalculatedRatio, index }: WrapperProps) => {
   const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const width = e.currentTarget.naturalWidth;
@@ -72,14 +82,7 @@ export const VideoWrapper = ({ src, handleCalculatedRatio, index }: WrapperProps
   );
 };
 
-type WrapperProps = {
-  src: string;
-  alt?: string;
-  handleCalculatedRatio: (calculatedRatio: SupportedAspectRatio) => void;
-  index: number;
-};
-
-export const NextImageWrapper = ({ src, alt, handleCalculatedRatio, index }: WrapperProps) => {
+export const NextImageWrapper = ({ src, alt, handleCalculatedRatio, index, nextImageConfig }: WrapperProps) => {
   const onImageLoad = (width: number, height: number) => {
     const ratio = getAspectRatio({ width, height });
     handleCalculatedRatio(ratio);
@@ -87,14 +90,20 @@ export const NextImageWrapper = ({ src, alt, handleCalculatedRatio, index }: Wra
 
   const hiddenFromScreenReaders = alt ? false : true;
 
+  const imageProps = {
+    src: src,
+    alt: alt ? alt : "IT'S HIDDEN",
+    fill: true,
+    onLoadingComplete: ({ naturalWidth, naturalHeight }: { naturalWidth: number; naturalHeight: number }) =>
+      onImageLoad(naturalWidth, naturalHeight),
+    ...nextImageConfig,
+  };
+
   try {
     // eslint-disable-next-line import/no-extraneous-dependencies, @typescript-eslint/no-var-requires
     return React.createElement(require("next/image").default, {
-      src: src,
-      alt: alt,
-      layout: "fill",
       "aria-hidden": hiddenFromScreenReaders,
-      css: css`
+      style: css({
         display: "block",
         top: 0,
         bottom: 0,
@@ -102,10 +111,11 @@ export const NextImageWrapper = ({ src, alt, handleCalculatedRatio, index }: Wra
         right: 0,
         maxWidth: "100%",
         maxHeight: "100%",
-      `,
+        width: "100%",
+        height: "100%",
+      }),
       "data-testid": `next/image-${index}`,
-      onLoadingComplete: ({ naturalWidth, naturalHeight }: { naturalWidth: number; naturalHeight: number }) =>
-        onImageLoad(naturalWidth, naturalHeight),
+      ...imageProps,
     });
   } catch (error) {
     return <ImageWrapper src={src} handleCalculatedRatio={handleCalculatedRatio} alt={alt} index={index} />;

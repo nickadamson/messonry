@@ -1,7 +1,7 @@
 import { Item } from "src/components/GridItem";
 import { MessonryOptions } from "src/components/MessonryGrid";
 
-export const defaultOptions: MessonryOptions = { useNextImage: false };
+export const defaultOptions: MessonryOptions = { useNextImage: false, nextImageConfig: {} };
 
 export const baseStyleString = `display: block; top: 0; bottom: 0; left: 0; right: 0; maxWidth: 100%; maxHeight: 100%;`;
 

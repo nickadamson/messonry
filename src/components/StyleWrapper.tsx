@@ -1,17 +1,23 @@
 /** @jsxImportSource @emotion/react */
 import { Global as EmotionGlobal } from "@emotion/react";
-import React from "react";
+import { ReactNode } from "react";
 
-export const StyleWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+type Props = {
+  children: ReactNode;
+};
+
+export const StyleWrapper = ({ children }: Props) => {
   return (
     <>
       <EmotionGlobal
         styles={{
           ".grid-item": {
+            // padding: "1rem", interesting overlap
             margin: "1rem",
             cursor: "pointer",
             width: "100%",
             height: "100%",
+            position: "relative",
           },
           ".grid-item:nth-of-type(1)": {
             gridColumnStart: 3,
