@@ -34,12 +34,17 @@
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
+    "buffer": "^6.0.3",
+    "https-browserify": "^1.0.0",
+    "image-size": "^1.0.2",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
     "tslib": "^2.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
-    "@commitlint/cli": "^17.1.2",
-    "@commitlint/config-conventional": "^17.1.0",
+    "@commitlint/cli": "17.1.0",
+    "@commitlint/config-conventional": "17.1.0",
     "@emotion/jest": "^11.10.5",
     "@storybook/addon-actions": "^6.5.13",
     "@storybook/addon-essentials": "^6.5.13",
