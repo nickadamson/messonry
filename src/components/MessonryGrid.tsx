@@ -1,10 +1,10 @@
 import type { ImageProps } from "next/image";
 import React from "react";
 
-import { SupportedAspectRatio, GRID_STYLE } from "../utils";
+import { SupportedAspectRatio } from "../utils";
 
+import gridStyles from "./grid-styles.module.css";
 import { GridItem, Item } from "./GridItem";
-import { StyleWrapper } from "./StyleWrapper";
 
 export type NextImageConfig = Omit<ImageProps, "src" | "alt" | "width" | "height" | "fill" | "onLoadingComplete">;
 
@@ -47,37 +47,23 @@ export const MessonryGrid = ({ items, options = defaultOptions }: MessonryGridPr
   };
 
   return (
-    <StyleWrapper>
-      {/* Fills Parent Div */}
-      <div
-        data-testid={`messonry`}
-        css={css({
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          width: "100%",
-          maxWidth: "inherit",
-          height: "100%",
-          maxHeight: "inherit",
+    <div data-testid={`messonry`} className={gridStyles["grid-wrapper"]}>
+      {/* Grid */}
+      <div className={gridStyles["messonry-grid"]}>
+        {/* Grid Items */}
+        {items.map((item, index) => {
+          return (
+            <GridItem
+              key={`MessonryGridItem-${index}`}
+              item={item}
+              options={options}
+              ratio={ratios[index]}
+              index={index}
+              updateRatios={updateRatios}
+            />
+          );
         })}
-      >
-        {/* Grid */}
-        <div css={GRID_STYLE}>
-          {/* Grid Items */}
-          {items.map((item, index) => {
-            return (
-              <GridItem
-                key={`MessonryGridItem-${index}`}
-                item={item}
-                options={options}
-                ratio={ratios[index]}
-                index={index}
-                updateRatios={updateRatios}
-              />
-            );
-          })}
-        </div>
       </div>
-    </StyleWrapper>
+    </div>
   );
 };
