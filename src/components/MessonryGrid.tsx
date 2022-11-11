@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import type { ImageProps } from "next/image";
 import React from "react";
 

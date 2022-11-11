@@ -33,7 +33,6 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.5",
     "buffer": "^6.0.3",
     "https-browserify": "^1.0.0",
     "image-size": "^1.0.2",
@@ -45,7 +44,6 @@
     "@babel/core": "^7.19.6",
     "@commitlint/cli": "17.1.0",
     "@commitlint/config-conventional": "17.1.0",
-    "@emotion/jest": "^11.10.5",
     "@storybook/addon-actions": "^6.5.13",
     "@storybook/addon-essentials": "^6.5.13",
     "@storybook/addon-interactions": "^6.5.13",

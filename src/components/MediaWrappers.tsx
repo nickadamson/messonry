@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import React from "react";
 
 import { getAspectRatio, SupportedAspectRatio } from "../utils";

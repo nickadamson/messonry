@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import { Global as EmotionGlobal } from "@emotion/react";
 import { ReactNode } from "react";
 
 type Props = {
@@ -9,7 +7,7 @@ type Props = {
 export const StyleWrapper = ({ children }: Props) => {
   return (
     <>
-      <EmotionGlobal
+      {/* <EmotionGlobal
         styles={{
           ".grid-item": {
             // padding: "1rem", interesting overlap
@@ -34,7 +32,7 @@ export const StyleWrapper = ({ children }: Props) => {
             gridRowStart: 9,
           },
         }}
-      />
+      /> */}
       {children}
     </>
   );
