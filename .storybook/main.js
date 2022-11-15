@@ -8,6 +8,7 @@ module.exports = {
     "@storybook/addon-interactions",
     "@storybook/addon-viewport",
     "storybook-addon-next",
+    "storybook-css-modules",
   ],
   framework: "@storybook/react",
   features: {
