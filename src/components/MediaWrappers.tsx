@@ -1,9 +1,8 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import React from "react";
 
 import { getAspectRatio, SupportedAspectRatio } from "../utils";
 
+import gridStyles from "./grid-styles.module.css";
 import { NextImageConfig } from "./MessonryGrid";
 
 type WrapperProps = {
@@ -27,15 +26,7 @@ export const ImageWrapper = ({ src, alt, handleCalculatedRatio, index }: Wrapper
   return (
     <>
       <img
-        css={css({
-          display: "block",
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          maxWidth: "100%",
-          maxHeight: "100%",
-        })}
+        className={gridStyles.media}
         data-testid={`img-${index}`}
         src={src}
         onLoad={(e) => onImageLoad(e)}
@@ -61,15 +52,7 @@ export const VideoWrapper = ({ src, handleCalculatedRatio, index }: WrapperProps
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video
         data-testid={`video-${index}`}
-        css={css({
-          display: "block",
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          maxWidth: "100%",
-          maxHeight: "100%",
-        })}
+        className={gridStyles.media}
         // muted
         onLoadedMetadata={(e) => onVideoLoad(e)}
         // autoPlay={false}
@@ -103,17 +86,7 @@ export const NextImageWrapper = ({ src, alt, handleCalculatedRatio, index, nextI
     // eslint-disable-next-line import/no-extraneous-dependencies, @typescript-eslint/no-var-requires
     return React.createElement(require("next/image").default, {
       "aria-hidden": hiddenFromScreenReaders,
-      style: css({
-        display: "block",
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0,
-        maxWidth: "100%",
-        maxHeight: "100%",
-        width: "100%",
-        height: "100%",
-      }),
+      className: gridStyles.media,
       "data-testid": `next/image-${index}`,
       ...imageProps,
     });

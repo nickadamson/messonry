@@ -8,11 +8,11 @@ module.exports = {
     "@storybook/addon-interactions",
     "@storybook/addon-viewport",
     "storybook-addon-next",
+    "storybook-css-modules",
   ],
   framework: "@storybook/react",
   features: {
     storyStoreV7: true,
-    emotionAlias: false,
   },
   core: {
     builder: "webpack5",

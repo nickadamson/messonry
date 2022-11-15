@@ -18,10 +18,6 @@ export default {
           display: "flex",
           width: "100%",
           height: "100%",
-          maxWidth: "2560px",
-          maxHeight: "1440px",
-          overflowY: "scroll",
-          overflowX: "hidden",
         }}
       >
         {Story()}

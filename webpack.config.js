@@ -1,5 +1,13 @@
 const webpack = require("webpack");
 module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
   resolve: {
     fallback: {
       buffer: require.resolve("buffer/"),

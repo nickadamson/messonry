@@ -12,8 +12,7 @@
     "importHelpers": false,
     "esModuleInterop": true,
     "declaration": true,
-    "jsx": "react-jsx",
-    "jsxImportSource": "@emotion/react",
+    "jsx": "preserve",
     "baseUrl": "./",
     "resolveJsonModule": true
   },

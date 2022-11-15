@@ -1,9 +1,8 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import React from "react";
 
-import { SupportedAspectRatio, RATIO_STYLES } from "../utils";
+import { SupportedAspectRatio } from "../utils";
 
+import gridStyles from "./grid-styles.module.css";
 import { ImageWrapper, NextImageWrapper, VideoWrapper } from "./MediaWrappers";
 import { MessonryOptions } from "./MessonryGrid";
 
@@ -53,8 +52,7 @@ export const GridItem = ({ item, options, ratio, index, updateRatios }: GridItem
   return (
     <>
       <div
-        className="grid-item" // see StyleWrapper
-        css={RATIO_STYLES[aspectRatio]}
+        className={`${gridStyles["grid-item"]} ${gridStyles[`${"ar-" + aspectRatio}`]}`}
         data-testid={`grid-item-${index}`}
       >
         {src && mimeType === "image" && (
